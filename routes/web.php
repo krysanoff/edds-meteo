@@ -13,12 +13,14 @@
 
 // Web page
 $router->get('/', function () use ($router) {
+
 	$loader = new Twig_Loader_Filesystem('../resources/views');
     $twig = new Twig_Environment($loader, array(
-	    'cache' => '../storage/framework/cache/twig',
+	    //'cache' => '../storage/framework/cache/twig',
 	));
     $template = $twig->load('index.html');
-	return $template->render(array('the' => 'variables', 'go' => 'here'));
+
+	return $template->render(array('the' => 'variables new', 'go' => 'here'));
 });
 
 // Get current meteo data
