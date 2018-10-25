@@ -6,4 +6,4 @@ Homestead.json
 Homestead.yaml
 .env
 composer.lock
-frontend/composer-lock.json
+frontend/package-lock.json
