@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>&#9728; Погода &#9729; Тарко-Сале &#9730;</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900&amp;subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/weather-icons.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <script src="assets/js/Chart.bundle.min.js"></script>
+    <script src="assets/js/utils.js"></script>
+</head>
+<body>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter48745826 = new Ya.Metrika({
+                    id:48745826,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/48745826" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+    <header class="header">
+        <h1>погода в тарко-сале</h1>
+    </header>
+    <section class="row d-flex flex-wrap justify-content-around">
+        <div class="col meteo__block">
+            <div class="meteo__basic meteo__basic_color_t">
+                <i class="wi wi-thermometer"></i>
+                <span id="Ta">10</span><i class="wi wi-degrees"></i>
+            </div>
+            <div class="meteo__title meteo__title_color_t">Температура</div>
+        </div>
+        <div class="col meteo__block">
+            <div class="meteo__basic meteo__basic_color_w">
+                <i class="wi wi-windy"></i>
+                <span id="Sm">3</span>
+                <span class="meteo__wind-measure">м/с</span>
+                <p id="Dm" class="meteo__basic_text_sm">южный</p>
+            </div>
+            <div class="meteo__title meteo__title_color_w">ветер</div>
+        </div>
+        <div class="col meteo__block">
+            <div class="meteo__basic meteo__basic_color_p">
+                <i class="wi wi-barometer"></i>
+                <span id="Pa">760</span>
+                <p class="meteo__basic_text_sm">мм ртутного столба</p>
+            </div>
+            <div class="meteo__title meteo__title_color_p">давление</div>
+        </div>
+        <div class="col meteo__block">
+            <div class="meteo__basic meteo__basic_color_h">
+                <i class="wi wi-humidity"></i>
+                <span id="Ua">80</span>
+            </div>
+            <div class="meteo__title meteo__title_color_h">влажность</div>
+        </div>
+    </section>
+    <section class="row d-flex flex-wrap justify-content-around align-items-center">
+        <div class="col-sm-11 col-lg-6 graph">
+            <canvas id="canvas"></canvas>
+            <span id="chart" data-chart='<?php echo $chart; ?>'></span>
+        </div>
+        <div class="col d-none d-none d-lg-block meteo__block">
+            <div class="meteo__basic meteo__basic_color_ts">
+                <div class="clock clock__ts"></div>
+            </div>
+            <div class="meteo__title meteo__title_color_ts">Тарко-Сале</div>
+        </div>
+    </section>
+<!-- <script src="assets/js/meteo_data.js"></script>
+<script src="assets/js/meteo_chart.js"></script>
+<script src="assets/js/clock.js"></script> -->
+</body>
+</html>

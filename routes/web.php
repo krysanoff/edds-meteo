@@ -11,6 +11,26 @@
 |
 */
 
+// Web page
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+	$loader = new Twig_Loader_Filesystem('../resources/views');
+    $twig = new Twig_Environment($loader, array(
+	    'cache' => '../storage/framework/cache/twig',
+	));
+    $template = $twig->load('index.html');
+	return $template->render(array('the' => 'variables', 'go' => 'here'));
+});
+
+// Get current meteo data
+$router->get('/meteo', function () {
+
+    // Render index view
+    return 'current meteo data';
+});
+
+// Data for graph
+$router->get('/graph/{period}', function ($period) {
+
+    // Render index view
+    return $period;
 });
