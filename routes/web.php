@@ -23,16 +23,23 @@ $router->get('/', function () use ($router) {
 	return $template->render(array('the' => 'variables new', 'go' => 'here'));
 });
 
-// Get current meteo data
-$router->get('/meteo', function () {
+// Routes for meteo data handling
+$router->group(['prefix' => 'meteo'], function () use ($router) {
+    $router->get('last', function () {
 
-    // Render index view
-    return 'current meteo data';
+        // Render index view
+        return 'get meteo data';
+    });
+
+   // $router->get('new', MeteoController\new());
 });
 
-// Data for graph
-$router->get('/graph/{period}', function ($period) {
 
-    // Render index view
-    return $period;
+// Routes for graph data handling
+$router->group(['prefix' => 'graph'], function () use ($router) {
+    $router->get('{period}', function ($period) {
+
+        // Render index view
+        return $period;
+    });
 });
