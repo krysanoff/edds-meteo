@@ -25,13 +25,8 @@ $router->get('/', function () use ($router) {
 
 // Routes for meteo data handling
 $router->group(['prefix' => 'meteo'], function () use ($router) {
-    $router->get('last', function () {
-
-        // Render index view
-        return 'get meteo data';
-    });
-
-   // $router->get('new', MeteoController\new());
+    $router->get('last', 'MeteoController@last');
+    $router->get('new', 'MeteoController@new');
 });
 
 
