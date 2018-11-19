@@ -43,16 +43,18 @@ class Meteo extends Model {
      */
     public function add()
     {
-        $this->created_at = date('Y-m-d H:i:s');
-        $this->temperature = $this->meteoArray['Ta'];
-        $this->wind_min = $this->meteoArray['Sn'];
-        $this->wind = $this->meteoArray['Sm'];
-        $this->wind_max = $this->meteoArray['Sx'];
-        $this->wind_dir = $this->meteoArray['Dm'];
-        $this->pressure = $this->meteoArray['Pa'];
-        $this->relative_humidity = $this->meteoArray['Ua'];
+        if (count($this->meteoArray)) {
+            $this->created_at = date('Y-m-d H:i:s');
+            $this->temperature = $this->meteoArray['Ta'];
+            $this->wind_min = $this->meteoArray['Sn'];
+            $this->wind = $this->meteoArray['Sm'];
+            $this->wind_max = $this->meteoArray['Sx'];
+            $this->wind_dir = $this->meteoArray['Dm'];
+            $this->pressure = $this->meteoArray['Pa'];
+            $this->relative_humidity = $this->meteoArray['Ua'];
 
-        $this->save();
+            $this->save();
+        }
     }
 
     /**
@@ -68,7 +70,7 @@ class Meteo extends Model {
             fclose($fp);
             return true;
         } catch (\Exception $e) {
-            $e->getMessage();
+            echo $e->getMessage();
             return false;
         }
     }
