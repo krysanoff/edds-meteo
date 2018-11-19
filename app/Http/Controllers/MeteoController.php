@@ -13,9 +13,9 @@ class MeteoController extends Controller
     public function last()
     {
         // Select last meteo data from DB
+        $lastParams = Meteo::find();
 
-        // Get
-        echo 'last';
+        var_dump($lastParams->wind);
     }
 
     /**
@@ -23,13 +23,11 @@ class MeteoController extends Controller
      */
     public function new()
     {
-        // Connect to meteo station host
+        // Connect to meteo station host and get meteo data
         $meteo = new Meteo;
         $meteo->getMeteoData();
-        var_dump($meteo);
-        // Get data from the host
 
         // Insert data into DB table
-        echo 'new';
+        $meteo->add();
     }
 }

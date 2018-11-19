@@ -6,26 +6,53 @@ use Illuminate\Database\Eloquent\Model;
 
 class Meteo extends Model {
 
-    protected $fillable = [];
+    protected $fillable = ['created_at',
+                           'temperature',
+                           'wind_min',
+                           'wind',
+                           'wind_max',
+                           'wind_dir',
+                           'pressure',
+                           'relative_humidity'
+        ];
 
-    protected $dates = [];
-
+    protected $table = 'meteo';
+    public $timestamps = false;
     public static $rules = [
         // Validation rules
     ];
 
     protected $meteoData;
     protected $meteoJson;
+    protected $meteoArray = [];
 
     /**
      * Get fresh data from meteo station
+     *
+     * @return void
      */
     public function getMeteoData()
     {
         if ($this->connectMeteoStation()) {
-            $this->prepareData();
-            return $this->meteoJson;
+            $this->meteoDataToArray();
         }
+    }
+
+    /**
+     * Add new meteo data to DB
+     */
+    public function add()
+    {
+        $this->created_at = date('Y-m-d H:i:s');
+        $this->temperature = $this->meteoArray['Ta'];
+        $this->wind_min = $this->meteoArray['Sn'];
+        $this->wind = $this->meteoArray['Sm'];
+        $this->wind_max = $this->meteoArray['Sx'];
+        $this->wind_dir = $this->meteoArray['Dm'];
+        $this->pressure = $this->meteoArray['Pa'];
+        $this->relative_humidity = $this->meteoArray['Ua'];
+
+        $this->save();
     }
 
     /**
@@ -47,19 +74,24 @@ class Meteo extends Model {
     }
 
     /**
-     * Convert meteo station's data to JSON
+     * Convert meteo station's data to array
      */
-    protected function prepareData()
+    protected function meteoDataToArray()
     {
         $draftArray = explode(",", $this->meteoData);
         array_shift($draftArray); // Shift key with command
 
         foreach ($draftArray as $param) {
-            static $preparedArray = [];
             list($key, $value) = explode("=", $param);
-            $preparedArray[$key] = substr($value, 0, strlen($value) - 1); // Remove last symbol
+            $this->meteoArray[$key] = substr($value, 0, strlen($value) - 1); // Remove last symbol
         }
+    }
 
-        $this->meteoJson = json_encode($preparedArray);
+    /**
+     * Encode meteo array to JSON
+     */
+    protected function meteoDataToJSON()
+    {
+        $this->meteoJson = json_encode($this->meteoArray);
     }
 }
