@@ -13,9 +13,8 @@ class MeteoController extends Controller
     public function last()
     {
         // Select last meteo data from DB
-        $lastParams = Meteo::find();
-
-        var_dump($lastParams->wind);
+        $meteo = Meteo::getLastMeteoData();
+        var_dump($meteo);
     }
 
     /**

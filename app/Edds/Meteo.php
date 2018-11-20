@@ -96,4 +96,12 @@ class Meteo extends Model {
     {
         $this->meteoJson = json_encode($this->meteoArray);
     }
+
+    /**
+     * Get last meteo data from DB
+     */
+    public static function getLastMeteoData() {
+        $last = self::orderBy('created_at', 'desc')->first();
+        return $last;
+    }
 }
