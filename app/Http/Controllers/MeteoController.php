@@ -14,7 +14,8 @@ class MeteoController extends Controller
     {
         // Select last meteo data from DB
         $meteo = Meteo::getLastMeteoData();
-        var_dump($meteo);
+
+        return $meteo;
     }
 
     /**

@@ -102,6 +102,7 @@ class Meteo extends Model {
      */
     public static function getLastMeteoData() {
         $last = self::orderBy('created_at', 'desc')->first();
-        return $last;
+
+        return $last->toJson();
     }
 }
