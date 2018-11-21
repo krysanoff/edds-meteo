@@ -3,6 +3,7 @@
 namespace App\Edds;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Meteo extends Model {
 
@@ -26,6 +27,15 @@ class Meteo extends Model {
     protected $meteoJson;
     protected $meteoArray = [];
 
+    /*public $created_at;
+    protected $temperature;
+    protected $wind;
+    protected $wind_min;
+    protected $wind_max;
+    protected $wind_dir;
+    protected $pressure;
+    protected $relative_humidity;*/
+
     /**
      * Get fresh data from meteo station
      *
@@ -34,6 +44,7 @@ class Meteo extends Model {
     public function getMeteoData()
     {
         if ($this->connectMeteoStation()) {
+            Log::info('Connected to meteo station');
             $this->meteoDataToArray();
         }
     }
@@ -52,9 +63,16 @@ class Meteo extends Model {
             $this->wind_dir = $this->meteoArray['Dm'];
             $this->pressure = $this->meteoArray['Pa'];
             $this->relative_humidity = $this->meteoArray['Ua'];
+            var_dump($this);
 
             $this->save();
+            Log::info('Insert meteo data to DB');
+
+            return;
         }
+
+        Log::error('Error during inserting meteo data');
+        return;
     }
 
     /**
@@ -91,6 +109,8 @@ class Meteo extends Model {
 
     /**
      * Encode meteo array to JSON
+     *
+     * @return void
      */
     protected function meteoDataToJSON()
     {
@@ -99,10 +119,17 @@ class Meteo extends Model {
 
     /**
      * Get last meteo data from DB
+     *
+     * @return mixed
      */
     public static function getLastMeteoData() {
         $last = self::orderBy('created_at', 'desc')->first();
 
-        return $last->toJson();
+        if ($last) {
+            return $last->toJson();
+        }
+
+        Log::error('Cannot get last meteo data');
+        return;
     }
 }
