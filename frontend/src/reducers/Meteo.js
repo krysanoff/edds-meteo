@@ -1,5 +1,5 @@
 import {
-    GET_CURRENT_METEO
+    GET_LAST_METEO
 } from "../constants/ActionTypes"
 
 const meteo = JSON.parse(document.getElementById('meteo').getAttribute('data-meteo'))
@@ -10,7 +10,7 @@ const initialState = [
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case GET_CURRENT_METEO:
+        case GET_LAST_METEO:
             return [
                 ...state,
                 {

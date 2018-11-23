@@ -1,1 +1,1 @@
-export const GET_CURRENT_METEO = 'GET_CURRENT_METEO'
+export const GET_LAST_METEO = 'GET_LAST_METEO'
