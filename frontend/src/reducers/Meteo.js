@@ -4,9 +4,7 @@ import {
 
 const meteo = JSON.parse(document.getElementById('meteo').getAttribute('data-meteo'))
 console.log(meteo)
-const initialState = [
-    meteo
-]
+const initialState = meteo
 
 export default function (state = initialState, action) {
     switch (action.type) {

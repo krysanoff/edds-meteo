@@ -5,18 +5,22 @@ import * as Actions from '../actions'
 
 
 const mapStateToProps = state => ({
-    meteo: state
+    state
 })
 
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(Actions, dispatch)
 })
 
-fetch('http://localhost:8000/meteo/last')
-    .then(function (response) {
+let data = fetch('http://localhost:8000/meteo/last')
+    .then(response => {
+        console.log(response)
+        return response.text()
+    })
+    .then(response => {
         console.log(response)
     })
-    .catch(alert)
+    .catch(response => console.error(response))
 
 export default connect(
     mapStateToProps,
