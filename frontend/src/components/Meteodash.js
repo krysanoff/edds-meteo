@@ -1,12 +1,28 @@
 import React, { Component } from 'react'
+import * as Actions from '../actions'
+import meteoStore from '../stores/MeteoStore'
 
 class Meteodash extends Component {
     constructor(props) {
         super(props)
-        this.state = JSON.parse(document.getElementById('meteo').dataset.meteo)
+        this.state = meteoStore.initState()
     }
     componentDidMount() {
+        meteoStore.on('updateMeteo', this.updateState)
+        setInterval(this.updateMeteo, 10000)
+    }
 
+    componentWillUnmount() {
+        meteoStore.removeListener('updateMeteo', this.updateMeteo)
+    }
+
+    updateMeteo() {
+        Actions.updateMeteo()
+    }
+
+    updateState = () => {
+        this.setState(meteoStore.getState())
+        console.log('state update', this.state)
     }
 
     render() {
