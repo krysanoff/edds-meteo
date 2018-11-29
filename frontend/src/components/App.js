@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from './Header'
-import Meteodash from '../containers/Meteodash'
+import Meteodash from '../components/Meteodash'
 import Graph from './Graph'
 import '../assets/css/bootstrap.min.css'
 import '../assets/css/style.css'
