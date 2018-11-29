@@ -16,10 +16,9 @@ class MeteoStore extends EventEmitter {
     handleActions(action) {
         switch(action.type) {
             case Actions.METEO.UPDATE:
-                console.log('meteo update store', action)
+                // console.log('meteo update store', action)
                 storeData = action.response
                 this.emit('updateMeteo')
-                return storeData
                 break
 
             default:

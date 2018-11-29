@@ -22,7 +22,7 @@ class Meteodash extends Component {
 
     updateState = () => {
         this.setState(meteoStore.getState())
-        console.log('state update', this.state)
+        // console.log('state update', this.state)
     }
 
     render() {
