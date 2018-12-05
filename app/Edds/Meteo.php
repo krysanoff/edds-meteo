@@ -122,7 +122,8 @@ class Meteo extends Model {
      *
      * @return mixed
      */
-    public static function getLastMeteoData() {
+    public static function getLastMeteoData()
+    {
         $last = self::orderBy('created_at', 'desc')->first();
 
         if ($last) {
@@ -130,6 +131,23 @@ class Meteo extends Model {
         }
 
         Log::error('Cannot get last meteo data');
-        return;
+        return false;
+    }
+
+    /**
+     * Get data from DB for the last day
+     */
+    public static function getLastDayData()
+    {
+        $mutable = \Carbon\Carbon::now();
+        $lastDayData = self::where('created_at', '>=', $mutable->subDay())->get();
+
+        if ($lastDayData) {
+            return $lastDayData->toJson();
+        }
+
+        Log::error('There is no any data for last day');
+
+        return false;
     }
 }

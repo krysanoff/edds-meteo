@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from './Header'
-import Meteodash from '../components/Meteodash'
+import MeteoDash from './Meteodash'
 import Graph from './Graph'
 import '../assets/css/bootstrap.min.css'
 import '../assets/css/style.css'
@@ -9,7 +9,7 @@ import '../assets/css/weather-icons.min.css'
 const App = () => (
     <div className="app">
         <Header/>
-        <Meteodash/>
+        <MeteoDash/>
         <Graph/>
     </div>
 )

@@ -10,14 +10,12 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
-
+$loader = new Twig_Loader_Filesystem('../resources/views');
+$twig = new Twig_Environment($loader, array(
+    //'cache' => '../storage/framework/cache/twig',
+));
 // Web page
-$router->get('/', function () use ($router) {
-
-	$loader = new Twig_Loader_Filesystem('../resources/views');
-    $twig = new Twig_Environment($loader, array(
-	    //'cache' => '../storage/framework/cache/twig',
-	));
+$router->get('/', function () use ($router, $loader, $twig) {
     $template = $twig->load('index.html');
 
 	return $template->render(array('the' => 'variables new', 'go' => 'here'));
@@ -32,9 +30,5 @@ $router->group(['prefix' => 'meteo'], function () use ($router) {
 
 // Routes for graph data handling
 $router->group(['prefix' => 'graph'], function () use ($router) {
-    $router->get('{period}', function ($period) {
-
-        // Render index view
-        return $period;
-    });
+    $router->get('/lastday', 'GraphController@getLastDay');
 });
