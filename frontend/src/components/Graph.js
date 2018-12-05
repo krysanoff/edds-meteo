@@ -33,7 +33,9 @@ class Graph extends Component {
 
     render() {
        const data = {
-            labels: ['11:00', '12:00', '13:00'],
+            labels: this.state.graph.map(i => {
+                return i.created_at
+            }),
             datasets: [{
                 label: 'Температура',
                 backgroundColor: 'orangered',
