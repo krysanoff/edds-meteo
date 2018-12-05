@@ -2,9 +2,10 @@ import dispatcher from '../utils/Dispatcher'
 import { EventEmitter } from 'events'
 import * as Actions from '../constants/ActionTypes'
 
-let storeData = JSON.parse(document.getElementById('meteo').dataset.meteo)
+let storeData = JSON.parse(document.getElementById('graph').dataset.graph)
+console.log('graph init', storeData)
 
-class MeteoStore extends EventEmitter {
+class GraphStore extends EventEmitter {
     initState() {
         return storeData
     }
@@ -15,18 +16,22 @@ class MeteoStore extends EventEmitter {
 
     handleActions(action) {
         switch(action.type) {
-            case Actions.METEO.UPDATE:
+            case Actions.GRAPH.UPDATE:
                 // console.log('meteo update store', action)
-                storeData = action.response
-                this.emit('updateMeteo')
+                storeData = {
+                    graph: action.response
+                }
+                this.emit('updateGraph')
                 break
 
             default:
                 console.log('Unknown action type')
         }
     }
+
+
 }
 
-const meteoStore = new MeteoStore()
-dispatcher.register(meteoStore.handleActions.bind(meteoStore))
-export default meteoStore
+const graphStore = new GraphStore()
+dispatcher.register(graphStore.handleActions.bind(graphStore))
+export default graphStore

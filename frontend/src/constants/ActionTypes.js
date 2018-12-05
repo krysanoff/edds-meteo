@@ -1,1 +1,7 @@
-export const GET_LAST_METEO = 'GET_LAST_METEO'
+export const METEO = {
+    UPDATE: 'UPDATE'
+}
+
+export const GRAPH = {
+    UPDATE: 'UPDATE'
+}
