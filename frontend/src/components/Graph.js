@@ -11,7 +11,7 @@ class Graph extends Component {
 
     componentDidMount() {
         graphStore.on('updateGraph', this.updateState)
-        setInterval(this.updateGraph, 5000)
+        setInterval(this.updateGraph, 15000)
     }
 
     componentWillUnmount() {
