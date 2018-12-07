@@ -1,5 +1,6 @@
 <?php
-
+use \App\Http\Controllers\MeteoController;
+use \App\Http\Controllers\GraphController;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -17,8 +18,10 @@ $twig = new Twig_Environment($loader, array(
 // Web page
 $router->get('/', function () use ($router, $loader, $twig) {
     $template = $twig->load('index.html');
+    $meteo = new MeteoController();
+    $graph = new GraphController();
 
-	return $template->render(array('the' => 'variables new', 'go' => 'here'));
+	return $template->render(array('meteo' => $meteo->last(), 'graph' => $graph->getLastDay()));
 });
 
 // Routes for meteo data handling
