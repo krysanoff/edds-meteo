@@ -2,6 +2,7 @@
 
 namespace App\Edds;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 
@@ -140,13 +141,31 @@ class Meteo extends Model {
     public static function getLastDayData()
     {
         $mutable = \Carbon\Carbon::now();
-        $lastDayData = self::where('created_at', '>=', $mutable->subDay())->get();
+        $lastDayData = self::select('created_at as time', 'temperature', 'wind')
+                            ->where('created_at', '>=', $mutable->subDay())
+                            ->get();
 
-        if ($lastDayData) {
-            return $lastDayData->toJson();
+        $lastDayDataObj = new \stdClass();
+        $lastDayDataObj->temperature = [];
+        $lastDayDataObj->wind = [];
+        $lastDayDataObj->time = [];
+
+        foreach ($lastDayData as $meteo) {
+
+            $parsedTime = Carbon::parse($meteo->time);
+
+            if ($parsedTime->minute == 0) {
+                $lastDayDataObj->temperature[] = $meteo->temperature;
+                $lastDayDataObj->wind[] = $meteo->wind;
+                $lastDayDataObj->time[] = $parsedTime->hour.":00";
+            }
         }
 
-        Log::error('There is no any data for last day');
+        if ($lastDayData) {
+            return json_encode($lastDayDataObj);
+        }
+
+        Log::error('There is no any data for the last day');
 
         return false;
     }

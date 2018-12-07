@@ -18,14 +18,12 @@ class GraphStore extends EventEmitter {
         switch(action.type) {
             case Actions.GRAPH.UPDATE:
                 // console.log('meteo update store', action)
-                storeData = {
-                    graph: action.response
-                }
+                storeData = action.response
                 this.emit('updateGraph')
                 break
 
             default:
-                console.log('Unknown action type')
+                break
         }
     }
 

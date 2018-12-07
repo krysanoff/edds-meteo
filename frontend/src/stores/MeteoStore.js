@@ -22,7 +22,7 @@ class MeteoStore extends EventEmitter {
                 break
 
             default:
-                console.log('Unknown action type')
+                break
         }
     }
 }

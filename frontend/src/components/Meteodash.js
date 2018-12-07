@@ -8,11 +8,13 @@ class Meteodash extends Component {
         this.state = meteoStore.initState()
     }
     componentDidMount() {
+        console.log('meteodash has just mounted')
         meteoStore.on('updateMeteo', this.updateState)
-        setInterval(this.updateMeteo, 10000)
+        setInterval(this.updateMeteo, 1000*60)
     }
 
     componentWillUnmount() {
+        console.log('meteodash will unmount')
         meteoStore.removeListener('updateMeteo', this.updateMeteo)
     }
 
