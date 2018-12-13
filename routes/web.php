@@ -1,37 +1,34 @@
 <?php
-use \App\Http\Controllers\MeteoController;
-use \App\Http\Controllers\GraphController;
+
 /*
 |--------------------------------------------------------------------------
-| Application Routes
+| Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register all of the routes for an application.
-| It is a breeze. Simply tell Lumen the URIs it should respond to
-| and give it the Closure to call when that URI is requested.
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
 |
 */
-$loader = new Twig_Loader_Filesystem('../resources/views');
-$twig = new Twig_Environment($loader, array(
-    //'cache' => '../storage/framework/cache/twig',
-));
-// Web page
-$router->get('/', function () use ($router, $loader, $twig) {
-    $template = $twig->load('index.html');
+
+use \App\Http\Controllers\MeteoController;
+use \App\Http\Controllers\GraphController;
+
+Route::get('/', function () {
     $meteo = new MeteoController();
     $graph = new GraphController();
 
-	return $template->render(array('meteo' => $meteo->last(), 'graph' => $graph->getLastDay()));
+    return view('index', [
+        'meteo' => $meteo->last(),
+        'graph' => $graph->getLastDay()
+    ]);
 });
 
-// Routes for meteo data handling
-$router->group(['prefix' => 'meteo'], function () use ($router) {
-    $router->get('last', 'MeteoController@last');
-    $router->get('new', 'MeteoController@new');
+Route::prefix('meteo')->group(function () {
+    Route::get('last', 'MeteoController@last');
+    Route::get('new', 'MeteoController@new');
 });
 
-
-// Routes for graph data handling
-$router->group(['prefix' => 'graph'], function () use ($router) {
-    $router->get('/lastday', 'GraphController@getLastDay');
+Route::prefix('graph')->group(function () {
+    Route::get('lastday', 'GraphController@getLastDay');
 });
