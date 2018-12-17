@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import graphStore from '../stores/GraphStore'
 import * as Actions from '../actions'
+import Buttons from './Buttons'
 import { Line } from 'react-chartjs-2'
 import 'chartjs-plugin-annotation'
 
@@ -114,12 +115,13 @@ class Graph extends Component {
                     />
                     <span id="chart"></span>
                 </div>
-                <div className="col d-none d-none d-lg-block meteo__block">
+                <Buttons />
+                {/*<div className="col d-none d-none d-lg-block meteo__block">
                     <div className="meteo__basic meteo__basic_color_ts">
                         <div className="clock clock__ts"></div>
                     </div>
                     <div className="meteo__title meteo__title_color_ts">Тарко-Сале</div>
-                </div>
+                </div>*/}
             </section>
         )
     }
