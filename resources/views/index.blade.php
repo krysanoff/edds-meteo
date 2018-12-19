@@ -43,6 +43,7 @@
 </noscript>
 <div id="meteo" data-meteo='{{ $meteo }}'></div>
 <div id="graph" data-graph='{{ $graph }}'></div>
+<div id="earliestYear" data-year='{{ $earliestYear }}'></div>
 <div id="root"></div>
 <!--
   This HTML file is a template.

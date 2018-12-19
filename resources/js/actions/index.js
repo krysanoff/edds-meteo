@@ -15,8 +15,23 @@ export function updateMeteo() {
         })
 }
 
-export function updateGraph() {
-    fetch('http://localhost:8000/graph/lastday', {'mode': 'cors'})
+export function updateGraph(year, month, day) {
+    let headers = new Headers({
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"').getAttribute('content'),
+        'Content-type': 'application/json'
+    })
+
+    let body = {
+        day: day,
+        month: month,
+        year: year
+    }
+
+    fetch('/graph/update', {
+        method: 'post',
+        headers: headers,
+        body: JSON.stringify(body)
+    })
         .then(response => response.json())
         .then(responseObject => {
             dispatcher.dispatch({

@@ -4,6 +4,7 @@ namespace App\Edds;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class Meteo extends Model {
@@ -140,7 +141,7 @@ class Meteo extends Model {
      */
     public static function getLastDayData()
     {
-        $mutable = \Carbon\Carbon::now();
+        $mutable = \Carbon\Carbon::now(env('APP_TIMEZONE'));
         $lastDayData = self::select('created_at as time', 'temperature', 'wind')
                             ->where('created_at', '>=', $mutable->subDay())
                             ->get();
@@ -166,6 +167,79 @@ class Meteo extends Model {
         }
 
         Log::error('There is no any data for the last day');
+
+        return false;
+    }
+
+    /*
+     * Get data for a month
+     */
+    public static function getMonthData($month, $year)
+    {
+        $monthData = DB::table('meteo')
+            ->whereYear('created_at', '=', $year)
+            ->whereMonth('created_at', '=', $month)
+            ->get();
+
+        $sortedData = new \stdClass();
+        $sortedData->temperature = [];
+        $sortedData->wind = [];
+        $sortedData->time = [];
+
+        foreach ($monthData as $meteo) {
+            $time = Carbon::parse($meteo->created_at);
+
+            if ($time->hour == 12 && $time->minute == 0) {
+                $sortedData->temperature[] = $meteo->temperature;
+                $sortedData->wind[] = $meteo->wind;
+                $sortedData->time[] = $time->day;
+            }
+        }
+
+        if ($sortedData) {
+            return json_encode($sortedData);
+        }
+
+        Log::error('There is no any data for the chose period');
+
+        return false;
+    }
+
+    /*
+     * Get data for chose year
+     */
+    public static function getYearData($year)
+    {
+        $yearData = DB::table('meteo')
+            ->whereYear('created_at', $year)
+            ->get();
+
+        $sortedData = new \stdClass();
+        $sortedData->temperature = [];
+        $sortedData->wind = [];
+        $sortedData->time = [];
+
+        $allMonthsTemperatures = [];
+        $avgMonthsTemperatures = [];
+
+        foreach ($yearData as $meteo) {
+            $parsedTime = Carbon::parse($meteo->created_at);
+
+            $allMonthsTemperatures[$parsedTime->englishMonth]['t'][] = $meteo->temperature;
+            $allMonthsTemperatures[$parsedTime->englishMonth]['w'][] = $meteo->wind;
+        }
+
+        foreach ($allMonthsTemperatures as $month => $params) {
+            $sortedData->temperature[] = array_sum($params['t'])/count($params['t']);
+            $sortedData->wind[] = array_sum($params['w'])/count($params['w']);
+            $sortedData->time[] = $month;
+        }
+
+        if ($sortedData) {
+            return json_encode($sortedData);
+        }
+
+        Log::error('There is no any data for the chose period');
 
         return false;
     }

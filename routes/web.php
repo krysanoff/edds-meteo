@@ -20,7 +20,8 @@ Route::get('/', function () {
 
     return view('index', [
         'meteo' => $meteo->last(),
-        'graph' => $graph->getLastDay()
+        'graph' => $graph->getLastDay(),
+        'earliestYear' => $graph->getFirstYear()
     ]);
 });
 
@@ -30,5 +31,5 @@ Route::prefix('meteo')->group(function () {
 });
 
 Route::prefix('graph')->group(function () {
-    Route::get('lastday', 'GraphController@getLastDay');
+    Route::post('update', 'GraphController@update');
 });
