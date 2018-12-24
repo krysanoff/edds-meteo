@@ -52,16 +52,14 @@ class GraphController extends Controller
     /*
      * Get custom data
      */
-    public function update(Request $request)
+    public function update($year = null, $month = null, $day = null, Request $request)
     {
-        $timeData = $request->all();
-
-        if (isset($timeData['day'])) {
-            //
-        } elseif (isset($timeData['month'])) {
-            $result = Meteo::getMonthData($timeData['month'], $timeData['year']);
-        } elseif (isset($timeData['year'])) {
-            $result = Meteo::getYearData(($timeData['year']));
+        if ($day) {
+            $result = Meteo::getDayData($day, $month, $year);
+        } elseif ($month) {
+            $result = Meteo::getMonthData($month, $year);
+        } elseif ($year) {
+            $result = Meteo::getYearData($year);
         } else {
             $result = Meteo::getLastDayData();
         }

@@ -141,9 +141,9 @@ class Meteo extends Model {
      */
     public static function getLastDayData()
     {
-        $mutable = \Carbon\Carbon::now(env('APP_TIMEZONE'));
+        $time = \Carbon\Carbon::now(env('APP_TIMEZONE'));
         $lastDayData = self::select('created_at as time', 'temperature', 'wind')
-                            ->where('created_at', '>=', $mutable->subDay())
+                            ->where('created_at', '>=', $time->subDay())
                             ->get();
 
         $lastDayDataObj = new \stdClass();
@@ -220,7 +220,6 @@ class Meteo extends Model {
         $sortedData->time = [];
 
         $allMonthsTemperatures = [];
-        $avgMonthsTemperatures = [];
 
         foreach ($yearData as $meteo) {
             $parsedTime = Carbon::parse($meteo->created_at);
@@ -233,6 +232,38 @@ class Meteo extends Model {
             $sortedData->temperature[] = array_sum($params['t'])/count($params['t']);
             $sortedData->wind[] = array_sum($params['w'])/count($params['w']);
             $sortedData->time[] = $month;
+        }
+
+        if ($sortedData) {
+            return json_encode($sortedData);
+        }
+
+        Log::error('There is no any data for the chose period');
+
+        return false;
+    }
+
+    public static function getDayData($day, $month, $year)
+    {
+        $dayData = DB::table('meteo')
+            ->whereYear('created_at', $year)
+            ->whereMonth('created_at', $month)
+            ->whereDay('created_at', $day)
+            ->get();
+
+        $sortedData = new \stdClass();
+        $sortedData->temperature = [];
+        $sortedData->wind = [];
+        $sortedData->time = [];
+
+        foreach ($dayData as $meteo) {
+            $time = Carbon::parse($meteo->created_at);
+
+            if ($time->minute == 0) {
+                $sortedData->temperature[] = $meteo->temperature;
+                $sortedData->wind[] = $meteo->wind;
+                $sortedData->time[] = $time->format("H:i");
+            }
         }
 
         if ($sortedData) {

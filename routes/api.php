@@ -16,3 +16,12 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::prefix('graph')->group(function () {
+    Route::get('update/{year?}/{month?}/{day?}', 'GraphController@update');
+});
+
+Route::prefix('meteo')->group(function () {
+    Route::get('last/day/{day?}', 'MeteoController@last');
+    Route::get('new', 'MeteoController@new');
+});
