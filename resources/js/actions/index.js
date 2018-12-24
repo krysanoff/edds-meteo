@@ -2,7 +2,7 @@ import * as types from '../constants/ActionTypes'
 import dispatcher from '../utils/Dispatcher'
 
 export function updateMeteo() {
-    fetch('http://localhost:8000/meteo/last', {'mode': 'cors'})
+    fetch('http://localhost:8000/api/meteo/last', {'mode': 'cors'})
         .then(response => response.json())
         .then(responseObject => {
             dispatcher.dispatch({
@@ -21,16 +21,22 @@ export function updateGraph(year, month, day) {
         'Content-type': 'application/json'
     })
 
-    let body = {
-        day: day,
-        month: month,
-        year: year
+    let url = '/api/graph/update'
+    if (year) {
+        url += '/' + year
+
+        if (month) {
+            url += '/' + month
+
+            if (day) {
+                url += day
+            }
+        }
     }
 
-    fetch('/graph/update', {
-        method: 'post',
-        headers: headers,
-        body: JSON.stringify(body)
+    fetch(url, {
+        method: 'get',
+        headers: headers
     })
         .then(response => response.json())
         .then(responseObject => {

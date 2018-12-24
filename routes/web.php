@@ -24,12 +24,3 @@ Route::get('/', function () {
         'earliestYear' => $graph->getFirstYear()
     ]);
 });
-
-Route::prefix('meteo')->group(function () {
-    Route::get('last', 'MeteoController@last');
-    Route::get('new', 'MeteoController@new');
-});
-
-Route::prefix('graph')->group(function () {
-    Route::post('update', 'GraphController@update');
-});

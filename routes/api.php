@@ -22,6 +22,6 @@ Route::prefix('graph')->group(function () {
 });
 
 Route::prefix('meteo')->group(function () {
-    Route::get('last/day/{day?}', 'MeteoController@last');
+    Route::get('last', 'MeteoController@last');
     Route::get('new', 'MeteoController@new');
 });
