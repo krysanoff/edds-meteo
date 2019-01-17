@@ -30,8 +30,9 @@
         "react-chartjs-2": "^2.7.4"
     },
     "dependencies": {
-        "react": "^16.2.0",
-        "react-dom": "^16.2.0"
+        "react": "^16.7.0",
+        "react-dom": "^16.2.0",
+        "react-live-clock": "^3.0.0"
     },
     "babel": {
         "presets": [
