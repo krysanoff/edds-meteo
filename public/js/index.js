@@ -64052,6 +64052,60 @@ function (_Component) {
 
     return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Graph)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.state = __WEBPACK_IMPORTED_MODULE_1__stores_GraphStore__["a" /* default */].initState(), _this.intervalId = 0, _this.updateState = function () {
       _this.setState(__WEBPACK_IMPORTED_MODULE_1__stores_GraphStore__["a" /* default */].getState());
+    }, _this.graph = {
+      data: {
+        labels: _this.state.time,
+        datasets: [{
+          label: 'Температура',
+          backgroundColor: 'orangered',
+          borderColor: 'orangered',
+          data: _this.state.temperature,
+          fill: false
+        }, {
+          label: 'Ветер',
+          backgroundColor: 'skyblue',
+          borderColor: 'skyblue',
+          data: _this.state.wind,
+          fill: false
+        }]
+      },
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'ПОГОДНЫЙ ГРАФИК',
+          fontSize: 32
+        },
+        tooltips: {
+          mode: 'index',
+          intersect: false
+        },
+        hover: {
+          mode: 'nearest',
+          intersect: true
+        },
+        scales: {
+          xAxes: [{
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'ВРЕМЯ',
+              fontSize: 32,
+              fontFamily: 'Roboto',
+              backgroundColor: 'skyblue'
+            }
+          }],
+          yAxes: [{
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'ЗНАЧЕНИЕ',
+              fontSize: 32,
+              fontFamily: 'Roboto'
+            }
+          }]
+        }
+      }
     }, _temp));
   }
 
@@ -64098,70 +64152,25 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var data = {
-        labels: this.state.time,
-        datasets: [{
-          label: 'Температура',
-          backgroundColor: 'orangered',
-          borderColor: 'orangered',
-          data: this.state.temperature,
-          fill: false
-        }, {
-          label: 'Ветер',
-          backgroundColor: 'skyblue',
-          borderColor: 'skyblue',
-          data: this.state.wind,
-          fill: false
-        }]
-      };
-      var options = {
-        responsive: true,
-        title: {
-          display: true,
-          text: 'ПОГОДНЫЙ ГРАФИК',
-          fontSize: 32
-        },
-        tooltips: {
-          mode: 'index',
-          intersect: false
-        },
-        hover: {
-          mode: 'nearest',
-          intersect: true
-        },
-        scales: {
-          xAxes: [{
-            display: true,
-            scaleLabel: {
-              display: true,
-              labelString: 'ВРЕМЯ',
-              fontSize: 32,
-              fontFamily: 'Roboto',
-              backgroundColor: 'skyblue'
-            }
-          }],
-          yAxes: [{
-            display: true,
-            scaleLabel: {
-              display: true,
-              labelString: 'ЗНАЧЕНИЕ',
-              fontSize: 32,
-              fontFamily: 'Roboto'
-            }
-          }]
-        }
-      };
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("section", {
         key: "1",
         className: "row d-flex flex-wrap justify-content-around align-items-center"
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
         className: "col-sm-11 col-lg-6 graph"
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_chartjs_2__["a" /* Line */], {
-        data: data,
-        options: options
+        data: this.graph.data,
+        options: this.graph.options
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", {
         id: "chart"
-      })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Buttons__["a" /* default */], null));
+      })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+        className: "col d-none d-none d-lg-block meteo__block"
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+        className: "meteo__basic meteo__basic_color_ts"
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+        className: "clock clock__ts"
+      })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+        className: "meteo__title meteo__title_color_ts"
+      }, "\u0422\u0430\u0440\u043A\u043E-\u0421\u0430\u043B\u0435")));
     }
   }]);
 
@@ -64368,7 +64377,7 @@ function (_Component) {
   return Buttons;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
-/* harmony default export */ __webpack_exports__["a"] = (Buttons);
+/* unused harmony default export */ var _unused_webpack_default_export = (Buttons);
 
 /***/ }),
 /* 217 */

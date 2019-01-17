@@ -49,8 +49,8 @@ class Graph extends Component {
         this.setState(graphStore.getState())
     }
 
-    render() {
-       const data = {
+    graph = {
+        data: {
             labels: this.state.time,
             datasets: [{
                 label: 'Температура',
@@ -66,9 +66,8 @@ class Graph extends Component {
                     data: this.state.wind,
                     fill: false,
                 }]
-        }
-
-        const options = {
+        },
+        options: {
             responsive: true,
             title: {
                 display: true,
@@ -105,23 +104,24 @@ class Graph extends Component {
                 }]
             }
         }
+    }
 
-        return(
+    render() {
+       return(
             <section key="1" className="row d-flex flex-wrap justify-content-around align-items-center">
                 <div className="col-sm-11 col-lg-6 graph">
                     <Line
-                        data={data}
-                        options={options}
+                        data={this.graph.data}
+                        options={this.graph.options}
                     />
                     <span id="chart"></span>
                 </div>
-                <Buttons />
-                {/*<div className="col d-none d-none d-lg-block meteo__block">
+                <div className="col d-none d-none d-lg-block meteo__block">
                     <div className="meteo__basic meteo__basic_color_ts">
                         <div className="clock clock__ts"></div>
                     </div>
                     <div className="meteo__title meteo__title_color_ts">Тарко-Сале</div>
-                </div>*/}
+                </div>
             </section>
         )
     }
