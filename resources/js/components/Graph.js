@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Clock from 'react-live-clock'
 import graphStore from '../stores/GraphStore'
 import * as Actions from '../actions'
-import Buttons from './Buttons'
 import { Line } from 'react-chartjs-2'
 import 'chartjs-plugin-annotation'
 

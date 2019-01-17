@@ -30,6 +30,7 @@
         "react-chartjs-2": "^2.7.4"
     },
     "dependencies": {
+        "babel-plugin-transform-remove-console": "^6.9.4",
         "react": "^16.7.0",
         "react-dom": "^16.2.0",
         "react-live-clock": "^3.0.0"

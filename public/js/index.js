@@ -64050,10 +64050,9 @@ __WEBPACK_IMPORTED_MODULE_0__utils_Dispatcher__["a" /* default */].register(mete
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_live_clock___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_live_clock__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stores_GraphStore__ = __webpack_require__(215);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__actions__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Buttons__ = __webpack_require__(216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_chartjs_2__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_chartjs_plugin_annotation__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_chartjs_plugin_annotation___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_chartjs_plugin_annotation__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_chartjs_2__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_chartjs_plugin_annotation__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_chartjs_plugin_annotation___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_chartjs_plugin_annotation__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -64071,7 +64070,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
 
 
 
@@ -64203,7 +64201,7 @@ function (_Component) {
         className: "row d-flex flex-wrap justify-content-around align-items-center"
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
         className: "col-sm-11 col-lg-6 graph"
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_react_chartjs_2__["a" /* Line */], {
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_chartjs_2__["a" /* Line */], {
         data: this.graph.data,
         options: this.graph.options
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("span", {
@@ -64307,129 +64305,7 @@ __WEBPACK_IMPORTED_MODULE_0__utils_Dispatcher__["a" /* default */].register(grap
 /* harmony default export */ __webpack_exports__["a"] = (graphStore);
 
 /***/ }),
-/* 216 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__actions__ = __webpack_require__(31);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-
-var Buttons =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(Buttons, _Component);
-
-  function Buttons(props) {
-    var _this;
-
-    _classCallCheck(this, Buttons);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Buttons).call(this, props));
-    _this.year = document.getElementById('earliestYear').dataset.year;
-    _this.months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
-    _this.years = [];
-    var dt = new Date();
-    _this.currentYear = dt.getFullYear();
-    return _this;
-  }
-
-  _createClass(Buttons, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
-      for (this.year; this.year <= this.currentYear; this.year++) {
-        this.years.push(this.year);
-      }
-    }
-  }, {
-    key: "handleClick",
-    value: function handleClick() {
-      var year = document.querySelector('input[name="year"]:checked') ? document.querySelector('input[name="year"]:checked').value : this.currentYear;
-      var month = document.querySelector('input[name="month"]:checked') ? document.querySelector('input[name="month"]:checked').value : null;
-      var day = null;
-      console.log(year, month);
-      Object(__WEBPACK_IMPORTED_MODULE_1__actions__["a" /* updateGraph */])(year, month, day);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-        className: "col-4"
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-        className: "row"
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-        className: "col-6"
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-        className: "btn-group btn-group-toggle",
-        "data-toggle": "buttons"
-      }, this.years.map(function (year, index) {
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("label", {
-          className: "btn btn-outline-primary"
-        }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
-          type: "radio",
-          name: "year",
-          id: year.toString(),
-          key: "year" + index.toString(),
-          autoComplete: "off",
-          value: year
-        }), year);
-      }))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-        className: "col-6"
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-        className: "btn-group-toggle",
-        "data-toggle": "buttons"
-      }, this.months.map(function (month, index) {
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("label", {
-          className: "btn btn-outline-secondary"
-        }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
-          type: "radio",
-          name: "month",
-          id: month.toString(),
-          key: "month" + index.toString(),
-          autoComplete: "off",
-          value: index + 1
-        }), month);
-      })))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-        className: "row"
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
-        type: "submit",
-        className: "btn btn-success",
-        value: "\u041F\u043E\u043A\u0430\u0437\u0430\u0442\u044C",
-        onClick: function onClick() {
-          return _this2.handleClick();
-        }
-      })));
-    }
-  }]);
-
-  return Buttons;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
-
-/* unused harmony default export */ var _unused_webpack_default_export = (Buttons);
-
-/***/ }),
+/* 216 */,
 /* 217 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
