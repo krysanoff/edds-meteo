@@ -56,8 +56,10 @@ class Meteo extends Model {
      */
     public function add()
     {
+        $time = \Carbon\Carbon::now(env('APP_TIMEZONE'));
+
         if (count($this->meteoArray)) {
-            $this->created_at = date('Y-m-d H:i:s');
+            $this->created_at = $time;
             $this->temperature = $this->meteoArray['Ta'];
             $this->wind_min = $this->meteoArray['Sn'];
             $this->wind = $this->meteoArray['Sm'];
