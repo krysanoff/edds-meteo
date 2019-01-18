@@ -36,7 +36,7 @@ class Graph extends Component {
 
     timeToFullHour() {
         const d = new Date()
-        const h = new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes()+1, 0, 0)
+        const h = new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours() + 1, 2, 0, 0)
         return (h - d)
     }
 
