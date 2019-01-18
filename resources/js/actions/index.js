@@ -2,7 +2,7 @@ import * as types from '../constants/ActionTypes'
 import dispatcher from '../utils/Dispatcher'
 
 export function updateMeteo() {
-    fetch('http://localhost:8000/api/meteo/last', {'mode': 'cors'})
+    fetch('/api/meteo/last')
         .then(response => response.json())
         .then(responseObject => {
             dispatcher.dispatch({

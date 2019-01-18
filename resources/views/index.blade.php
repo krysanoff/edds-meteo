@@ -56,7 +56,6 @@
   To create a production bundle, use `npm run build` or `yarn build`.
 -->
 
-<script src="{{ URL::asset('js/app.js') }}"></script>
 <script src="{{ URL::asset('js/index.js') }}"></script>
 </body>
 </html>

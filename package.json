@@ -42,6 +42,11 @@
         ],
         "plugins": [
             "transform-class-properties"
-        ]
+        ],
+        "env": {
+            "production": {
+                "plugins": ["transform-remove-console"]
+            }
+        }
     }
 }
