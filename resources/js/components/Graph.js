@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Clock from 'react-live-clock'
+import Clock from './Clock'
 import graphStore from '../stores/GraphStore'
 import * as Actions from '../actions'
 import { Line } from 'react-chartjs-2'
@@ -122,7 +122,7 @@ class Graph extends Component {
                 <div className="col d-none d-none d-lg-block meteo__block">
                     <div className="meteo__basic meteo__basic_color_ts">
                         <div className="clock clock__ts">
-                            <Clock format={'HH:mm:ss'} ticking={true} timezone={'Asia/Yekaterinburg'} />
+                            <Clock />
                         </div>
                     </div>
                     <div className="meteo__title meteo__title_color_ts">Тарко-Сале</div>

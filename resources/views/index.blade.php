@@ -5,7 +5,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>&#9728; Погода &#9729; Тарко-Сале &#9730;</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900&amp;subset=cyrillic" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/weather-icons.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/weather-icons.min.css') }}">
 </head>
 <body>
 <!-- Yandex.Metrika counter -->

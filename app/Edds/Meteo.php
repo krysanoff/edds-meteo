@@ -29,15 +29,6 @@ class Meteo extends Model {
     protected $meteoJson;
     protected $meteoArray = [];
 
-    /*public $created_at;
-    protected $temperature;
-    protected $wind;
-    protected $wind_min;
-    protected $wind_max;
-    protected $wind_dir;
-    protected $pressure;
-    protected $relative_humidity;*/
-
     /**
      * Get fresh data from meteo station
      *
@@ -67,7 +58,6 @@ class Meteo extends Model {
             $this->wind_dir = $this->meteoArray['Dm'];
             $this->pressure = $this->meteoArray['Pa']/1.333224; // convert to mmHg
             $this->relative_humidity = $this->meteoArray['Ua'];
-            var_dump($this);
 
             $this->save();
             Log::info('Insert meteo data to DB');

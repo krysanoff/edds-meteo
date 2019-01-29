@@ -52,7 +52,7 @@ table {
 body {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
-    background: url("../images/weather_pattern.png") repeat;
+    background: url("../images/weather_pattern.jpg") repeat;
 }
 
 .header {
