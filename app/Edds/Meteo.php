@@ -32,13 +32,21 @@ class Meteo extends Model {
     /**
      * Get fresh data from meteo station
      *
+     * @throws \Exception if the meteo data is empty
+     *
      * @return void
      */
     public function getMeteoData()
     {
-        if ($this->connectMeteoStation()) {
-            Log::info('Connected to meteo station');
+        try {
+            $this->connectMeteoStation();
             $this->meteoDataToArray();
+
+            if (!count($this->meteoArray)) {
+                throw new \Exception('The meteo data is empty');
+            }
+        } catch (\Exception $e) {
+            die($e->getMessage());
         }
     }
 
@@ -47,20 +55,23 @@ class Meteo extends Model {
      */
     public function add()
     {
-        $time = \Carbon\Carbon::now(env('APP_TIMEZONE'));
+        $time = Carbon::now(env('APP_TIMEZONE'));
 
         if (count($this->meteoArray)) {
-            $this->created_at = $time;
-            $this->temperature = $this->meteoArray['Ta'];
-            $this->wind_min = $this->meteoArray['Sn'];
-            $this->wind = $this->meteoArray['Sm'];
-            $this->wind_max = $this->meteoArray['Sx'];
-            $this->wind_dir = $this->meteoArray['Dm'];
-            $this->pressure = $this->meteoArray['Pa']/1.333224; // convert to mmHg
-            $this->relative_humidity = $this->meteoArray['Ua'];
+            try {
+                $this->created_at = $time;
+                $this->temperature = $this->meteoArray['Ta'];
+                $this->wind_min = $this->meteoArray['Sn'];
+                $this->wind = $this->meteoArray['Sm'];
+                $this->wind_max = $this->meteoArray['Sx'];
+                $this->wind_dir = $this->meteoArray['Dm'];
+                $this->pressure = $this->meteoArray['Pa']/1.333224; // convert to mmHg
+                $this->relative_humidity = $this->meteoArray['Ua'];
 
-            $this->save();
-            Log::info('Insert meteo data to DB');
+                $this->save();
+            } catch(\Exception $e) {
+                report($e);
+            }
 
             return;
         }
@@ -72,18 +83,21 @@ class Meteo extends Model {
     /**
      * Connection with meteo station
      *
-     * @return boolean
+     * @return void
      */
     protected function connectMeteoStation()
     {
         try {
-            $fp = fsockopen(env('METEO_HOST'), env('METEO_PORT'),$errno,$errstr, 30);
+            $fp = @fsockopen(env('METEO_HOST'), env('METEO_PORT'),$errno,$errstr, 3);
+
+            if (!$fp) {
+                throw new \Exception("Couldn't connect to the meteo host");
+            }
+
             $this->meteoData = fread($fp, 1024);
             fclose($fp);
-            return true;
         } catch (\Exception $e) {
-            echo $e->getMessage();
-            return false;
+            die($e->getMessage());
         }
     }
 
