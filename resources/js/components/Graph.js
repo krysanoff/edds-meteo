@@ -111,7 +111,7 @@ class Graph extends Component {
         }
 
        return(
-            <section key="1" className="row d-flex flex-wrap justify-content-around align-items-center">
+            <section key="1" className="row d-flex flex-wrap justify-content-around align-items-center mb-4">
                 <div className="col-sm-11 col-lg-6 graph">
                     <Line
                         data={graph.data}

@@ -1,0 +1,78 @@
+.meteo {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.meteo__block {
+    min-width: 400px;
+    max-width: 500px;
+    margin-bottom: 2.5rem;
+}
+
+.meteo__basic {
+    width: 100%;
+    height: 12rem;
+    padding: 3rem 1rem;
+    font-size: 6rem;
+    font-weight: 400;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.meteo__title {
+    width: 100%;
+    padding: .5rem 0;
+    font-size: 2rem;
+    font-weight: 100;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.meteo__basic_color_t {
+    background-color: $temperature_color;
+}
+
+.meteo__title_color_t {
+    background-color: $temperature_title_color;
+}
+
+.meteo__basic_color_w {
+    background-color: $wind_color;
+}
+
+.meteo__title_color_w {
+    background-color: $wind_title_color;
+}
+
+.meteo__basic_color_p {
+    background-color: $pressure_color;
+}
+
+.meteo__title_color_p {
+    background-color: $pressure_title_color;
+}
+
+.meteo__title_color_h {
+    background-color: $rh_color;
+}
+
+.meteo__basic_color_h {
+    background-color: $rh_title_color;
+}
+
+.meteo__title_color_ts {
+    background-color: $time_color;
+}
+
+.meteo__basic_color_ts {
+    background-color: $time_title_color;
+}
+
+.meteo__basic_text_sm {
+    font-size: 1rem;
+}
+
+.meteo__wind-measure {
+    font-size: 1.5rem;
+}

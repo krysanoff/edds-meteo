@@ -7,7 +7,7 @@ import Graph from './Graph'
 //import '../assets/css/weather-icons.min.css'
 
 const App = () => (
-    <div className="app">
+    <div className="app container-fluid">
         <Header/>
         <MeteoDash/>
         <Graph/>

@@ -3,10 +3,8 @@ import * as Actions from '../actions'
 import meteoStore from '../stores/MeteoStore'
 
 class Meteodash extends Component {
-    constructor(props) {
-        super(props)
-        this.state = meteoStore.initState()
-    }
+    state = meteoStore.initState()
+
     componentDidMount() {
         console.log('meteodash has just mounted')
         meteoStore.on('updateMeteo', this.updateState)
@@ -29,15 +27,15 @@ class Meteodash extends Component {
 
     render() {
         return (
-            <section className="row d-flex flex-wrap justify-content-around">
-                <div className="col meteo__block">
+            <section className="row d-flex justify-content-around mt-5">
+                <div className="col-12 col-lg-6 col-xl-3 meteo__block">
                     <div className="meteo__basic meteo__basic_color_t">
                         <i className="wi wi-thermometer"></i>
                         <span id="Ta"> {this.state.temperature}</span><i className="wi wi-degrees"></i>
                     </div>
                     <div className="meteo__title meteo__title_color_t">Температура</div>
                 </div>
-                <div className="col meteo__block">
+                <div className="col-12 col-lg-6 col-xl-3 meteo__block">
                     <div className="meteo__basic meteo__basic_color_w">
                         <i className="wi wi-windy"></i>
                         <span id="Sm"> {this.state.wind}</span>
@@ -46,7 +44,7 @@ class Meteodash extends Component {
                     </div>
                     <div className="meteo__title meteo__title_color_w">ветер</div>
                 </div>
-                <div className="col meteo__block">
+                <div className="col-12 col-lg-6 col-xl-3 meteo__block">
                     <div className="meteo__basic meteo__basic_color_p">
                         <i className="wi wi-barometer"></i>
                         <span id="Pa"> {this.state.pressure}</span>
@@ -54,7 +52,7 @@ class Meteodash extends Component {
                     </div>
                     <div className="meteo__title meteo__title_color_p">давление</div>
                 </div>
-                <div className="col meteo__block">
+                <div className="col-12 col-lg-6 col-xl-3 meteo__block">
                     <div className="meteo__basic meteo__basic_color_h">
                         <i className="wi wi-humidity"></i>
                         <span id="Ua"> {this.state.relative_humidity}</span>
