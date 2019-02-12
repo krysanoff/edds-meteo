@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Clock from './Clock'
 import graphStore from '../stores/GraphStore'
 import * as Actions from '../actions'
-import { Line } from 'react-chartjs-2'
+import { Line, defaults } from 'react-chartjs-2'
 import 'chartjs-plugin-annotation'
 
 
@@ -53,6 +53,7 @@ class Graph extends Component {
     }
 
     render() {
+        defaults.global.defaultFontColor = 'ghostwhite';
         let graph = {
             data: {
                 labels: this.state.time,
@@ -73,6 +74,7 @@ class Graph extends Component {
             },
             options: {
                 responsive: true,
+                defaultFontColor: 'white',
                 title: {
                     display: true,
                     text: 'ПОГОДНЫЙ ГРАФИК',
@@ -89,8 +91,14 @@ class Graph extends Component {
                 scales: {
                     xAxes: [{
                         display: true,
+                        gridLines: {
+                            color: 'rgba(0, 0, 0, 0.5)'
+                        },
                         scaleLabel: {
                             display: true,
+                            gridLines: {
+                                color: 'rgba(0, 0, 0, 0.5)',
+                            },
                             labelString: 'ВРЕМЯ',
                             fontSize: 32,
                             fontFamily: 'Roboto',
