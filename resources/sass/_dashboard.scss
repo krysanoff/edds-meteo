@@ -76,3 +76,14 @@
 .meteo__wind-measure {
     font-size: 1.5rem;
 }
+
+@keyframes meteochange {
+    0% {text-shadow: 0px 0px 0px $main_color;}
+    50% {text-shadow: 0px 0px 20px $main_color;}
+    100% {text-shadow: none;}
+}
+
+.animate {
+    animation-name: meteochange;
+    animation-duration: 2s;
+}
