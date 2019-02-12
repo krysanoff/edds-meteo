@@ -6,7 +6,7 @@
     <title>&#9728; Погода &#9729; Тарко-Сале &#9730;</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900&amp;subset=cyrillic" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/weather-icons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 </head>
 <body>
 <!-- Yandex.Metrika counter -->
@@ -55,7 +55,7 @@
   To create a production bundle, use `npm run build` or `yarn build`.
 -->
 
-<script src="{{ URL::asset('js/index.js') }}"></script>
+<script src="{{ mix('js/index.js') }}"></script>
 </body>
 </html>
 
