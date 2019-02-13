@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta http-equiv="Cache-Control" content="public">
+    <meta http-equiv="Cache-Control" content="max-age=31104000, must-revalidate">
     <title>&#9728; Погода &#9729; Тарко-Сале &#9730;</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900&amp;subset=cyrillic" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/weather-icons.min.css') }}">
