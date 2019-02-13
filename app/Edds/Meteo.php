@@ -46,7 +46,7 @@ class Meteo extends Model {
                 throw new \Exception('The meteo data is empty');
             }
         } catch (\Exception $e) {
-            die($e->getMessage());
+            $e->getMessage();
         }
     }
 
@@ -130,7 +130,7 @@ class Meteo extends Model {
      *
      * @return mixed
      */
-    public static function getLastMeteoData()
+    public function getLastMeteoData()
     {
         $last = self::orderBy('created_at', 'desc')->first();
 
@@ -145,17 +145,14 @@ class Meteo extends Model {
     /**
      * Get data from DB for the last day
      */
-    public static function getLastDayData()
+    public function getLastDayData()
     {
-        $time = \Carbon\Carbon::now(env('APP_TIMEZONE'));
+        $time = Carbon::now(env('APP_TIMEZONE'));
         $lastDayData = self::select('created_at as time', 'temperature', 'wind')
                             ->where('created_at', '>=', $time->subDay())
                             ->get();
 
-        $lastDayDataObj = new \stdClass();
-        $lastDayDataObj->temperature = [];
-        $lastDayDataObj->wind = [];
-        $lastDayDataObj->time = [];
+        $lastDayDataObj = $this->createMeteoObject();
 
         foreach ($lastDayData as $meteo) {
 
@@ -180,17 +177,14 @@ class Meteo extends Model {
     /*
      * Get data for a month
      */
-    public static function getMonthData($month, $year)
+    public function getMonthData($month, $year)
     {
         $monthData = DB::table('meteo')
             ->whereYear('created_at', '=', $year)
             ->whereMonth('created_at', '=', $month)
             ->get();
 
-        $sortedData = new \stdClass();
-        $sortedData->temperature = [];
-        $sortedData->wind = [];
-        $sortedData->time = [];
+        $sortedData = $this->createMeteoObject();
 
         foreach ($monthData as $meteo) {
             $time = Carbon::parse($meteo->created_at);
@@ -214,16 +208,13 @@ class Meteo extends Model {
     /*
      * Get data for chose year
      */
-    public static function getYearData($year)
+    public function getYearData($year)
     {
         $yearData = DB::table('meteo')
             ->whereYear('created_at', $year)
             ->get();
 
-        $sortedData = new \stdClass();
-        $sortedData->temperature = [];
-        $sortedData->wind = [];
-        $sortedData->time = [];
+        $sortedData = $this->createMeteoObject();
 
         $allMonthsTemperatures = [];
 
@@ -249,7 +240,7 @@ class Meteo extends Model {
         return false;
     }
 
-    public static function getDayData($day, $month, $year)
+    public function getDayData($day, $month, $year)
     {
         $dayData = DB::table('meteo')
             ->whereYear('created_at', $year)
@@ -257,10 +248,7 @@ class Meteo extends Model {
             ->whereDay('created_at', $day)
             ->get();
 
-        $sortedData = new \stdClass();
-        $sortedData->temperature = [];
-        $sortedData->wind = [];
-        $sortedData->time = [];
+        $sortedData = $this->createMeteoObject();
 
         foreach ($dayData as $meteo) {
             $time = Carbon::parse($meteo->created_at);
@@ -279,5 +267,20 @@ class Meteo extends Model {
         Log::error('There is no any data for the chose period');
 
         return false;
+    }
+
+    /**
+     * Create object with meteo properties
+     *
+     * @return object
+     * */
+    protected function createMeteoObject()
+    {
+        $newMeteoObj = new \stdClass();
+        $newMeteoObj->temperature = [];
+        $newMeteoObj->wind = [];
+        $newMeteoObj->time = [];
+
+        return $newMeteoObj;
     }
 }

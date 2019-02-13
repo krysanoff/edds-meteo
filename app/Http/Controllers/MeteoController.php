@@ -6,16 +6,20 @@ use App\Edds\Meteo;
 
 class MeteoController extends Controller
 {
+    public $meteo;
+
+    public function __construct()
+    {
+        $this->meteo = new Meteo();
+    }
+
     /**
      * Getting last meteo data
      *
      */
     public function last()
     {
-        // Select last meteo data from DB
-        $meteo = Meteo::getLastMeteoData();
-
-        return $meteo;
+        return $this->meteo->getLastMeteoData();
     }
 
     /**
@@ -24,10 +28,9 @@ class MeteoController extends Controller
     public function new()
     {
         // Connect to meteo station host and get meteo data
-        $meteo = new Meteo;
-        $meteo->getMeteoData();
+        $this->meteo->getMeteoData();
 
         // Insert data into DB table
-        $meteo->add();
+        $this->meteo->add();
     }
 }

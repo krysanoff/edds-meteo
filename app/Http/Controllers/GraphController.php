@@ -7,9 +7,11 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use PHPUnit\Util\Json;
 
 class GraphController extends Controller
 {
+    public $meteo;
     /**
      * Create a new controller instance.
      *
@@ -17,7 +19,7 @@ class GraphController extends Controller
      */
     public function __construct()
     {
-        //
+        $this->meteo = new Meteo();
     }
 
     /**
@@ -25,7 +27,7 @@ class GraphController extends Controller
      */
     public function getLastDay()
     {
-        $lastDay = Meteo::getLastDayData();
+        $lastDay = $this->meteo->getLastDayData();
 
         if ($lastDay) {
             return $lastDay;
@@ -49,19 +51,25 @@ class GraphController extends Controller
         return $dt->year;
     }
 
-    /*
+    /**
      * Get custom data
+     *
+     * @param mixed $year
+     * @param mixed $month
+     * @param mixed $day
+     *
+     * @return Json
      */
-    public function update($year = null, $month = null, $day = null, Request $request)
+    public function update($year = null, $month = null, $day = null)
     {
         if ($day) {
-            $result = Meteo::getDayData($day, $month, $year);
+            $result = $this->meteo->getDayData($day, $month, $year);
         } elseif ($month) {
-            $result = Meteo::getMonthData($month, $year);
+            $result = $this->meteo->getMonthData($month, $year);
         } elseif ($year) {
-            $result = Meteo::getYearData($year);
+            $result = $this->meteo->getYearData($year);
         } else {
-            $result = Meteo::getLastDayData();
+            $result = $this->meteo->getLastDayData();
         }
 
         return $result;
