@@ -31,7 +31,7 @@ class Meteodash extends Component {
                 <div className="col-12 col-lg-6 col-xl-3 meteo__block">
                     <div className="meteo__basic meteo__basic_color_t">
                         <i className="wi wi-thermometer"></i>
-                        <span id="Ta" className="animate" key={this.state.temperature}> {this.state.temperature}</span><i className="wi wi-degrees"></i>
+                        <span id="Ta" className="animate" key={this.state.temperature}> {this.state.temperature.toFixed(1)}</span><i className="wi wi-degrees"></i>
                     </div>
                     <div className="meteo__title meteo__title_color_t">Температура</div>
                 </div>
