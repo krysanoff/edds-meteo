@@ -40,7 +40,7 @@ class Meteodash extends Component {
                         <i className="wi wi-windy"></i>
                         <span id="Sm" className="animate" key={this.state.wind}> {this.state.wind}</span>
                         <span className="meteo__wind-measure">м/с</span>
-                        <p id="Dm" className="meteo__basic_text_sm">южный</p>
+                        <p id="Dm" className="meteo__basic_text_sm">{this.state.wind_dir_lit}</p>
                     </div>
                     <div className="meteo__title meteo__title_color_w">ветер</div>
                 </div>

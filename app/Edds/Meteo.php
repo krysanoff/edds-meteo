@@ -65,6 +65,7 @@ class Meteo extends Model {
                 $this->wind = $this->meteoArray['Sm'];
                 $this->wind_max = $this->meteoArray['Sx'];
                 $this->wind_dir = $this->meteoArray['Dm'];
+                $this->wind_dir_lit = $this->defineWindDirLit();
                 $this->pressure = $this->meteoArray['Pa']/1.333224; // convert to mmHg
                 $this->relative_humidity = $this->meteoArray['Ua'];
 
@@ -78,6 +79,31 @@ class Meteo extends Model {
 
         Log::error('Error during inserting meteo data');
         return;
+    }
+
+    public function defineWindDirLit()
+    {
+        $windDirection = '';
+
+        if ($this->meteoArray['Dm'] <= 23 || $this->meteoArray['Dm'] >= 337) {
+                $windDirection = 'южный';
+            } else if ($this->meteoArray['Dm'] > 23 && $this->meteoArray['Dm'] < 67) {
+                $windDirection = 'юго-восточный';
+            } else if ($this->meteoArray['Dm'] >= 67 && $this->meteoArray['Dm'] <= 113) {
+                $windDirection = 'восточный';
+            } else if ($this->meteoArray['Dm'] > 133 && $this->meteoArray['Dm'] < 157) {
+                $windDirection = 'северо-восточный';
+            } else if ($this->meteoArray['Dm'] >= 157 && $this->meteoArray['Dm'] <= 203) {
+                $windDirection = 'северный';
+            } else if ($this->meteoArray['Dm'] > 203 && $this->meteoArray['Dm'] < 247) {
+                $windDirection = 'северо-западный';
+            } else if ($this->meteoArray['Dm'] >= 247 && $this->meteoArray['Dm'] <= 293) {
+                $windDirection = 'западный';
+            } else if ($this->meteoArray['Dm'] > 293 && $this->meteoArray['Dm'] < 337) {
+                $windDirection = 'юго-западный';
+            }
+
+        return $windDirection;
     }
 
     /**
