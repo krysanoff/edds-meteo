@@ -91,7 +91,7 @@ class Meteo extends Model {
                 $windDirection = 'юго-восточный';
             } else if ($this->meteoArray['Dm'] >= 67 && $this->meteoArray['Dm'] <= 113) {
                 $windDirection = 'восточный';
-            } else if ($this->meteoArray['Dm'] > 133 && $this->meteoArray['Dm'] < 157) {
+            } else if ($this->meteoArray['Dm'] > 113 && $this->meteoArray['Dm'] < 157) {
                 $windDirection = 'северо-восточный';
             } else if ($this->meteoArray['Dm'] >= 157 && $this->meteoArray['Dm'] <= 203) {
                 $windDirection = 'северный';
