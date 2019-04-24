@@ -19,9 +19,9 @@ Route::get('/', function () {
     $graph = new GraphController();
 
     return view('index', [
+        'title' => "погода в Тарко-Сале",
         'meteo' => $meteo->last(),
-        'graph' => $graph->getLastDay(),
-        'earliestYear' => $graph->getFirstYear()
+        'graph' => $graph->getLastDay()
     ]);
 });
 
@@ -29,6 +29,8 @@ Route::get('/stats', function () {
     $graph = new GraphController();
 
     return view('stats', [
-       'graph' => $graph->getLastDay()
+        'title' => 'Статистика',
+        'graph' => $graph->getLastDay(),
+        'earliestYear' => $graph->getFirstYear()
     ]);
 });
