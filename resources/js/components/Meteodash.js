@@ -25,6 +25,30 @@ class Meteodash extends Component {
         // console.log('state update', this.state)
     }
 
+    windDirLit = () => {
+        let windDirection = ''
+
+        if (this.state.wind_dir <= 23 || this.state.wind_dir >= 337) {
+            windDirection = 'южный';
+        } else if (this.state.wind_dir > 23 && this.state.wind_dir < 67) {
+            windDirection = 'юго-восточный';
+        } else if (this.state.wind_dir >= 67 && this.state.wind_dir <= 113) {
+            windDirection = 'восточный';
+        } else if (this.state.wind_dir > 113 && this.state.wind_dir < 157) {
+            windDirection = 'северо-восточный';
+        } else if (this.state.wind_dir >= 157 && this.state.wind_dir <= 203) {
+            windDirection = 'северный';
+        } else if (this.state.wind_dir > 203 && this.state.wind_dir < 247) {
+            windDirection = 'северо-западный';
+        } else if (this.state.wind_dir >= 247 && this.state.wind_dir <= 293) {
+            windDirection = 'западный';
+        } else if (this.state.wind_dir > 293 && this.state.wind_dir < 337) {
+            windDirection = 'юго-западный';
+        }
+
+        return windDirection
+    }
+
     render() {
         return (
             <section className="row d-flex justify-content-around mt-5">
@@ -40,7 +64,7 @@ class Meteodash extends Component {
                         <i className="wi wi-windy"></i>
                         <span id="Sm" className="animate" key={this.state.wind}> {this.state.wind}</span>
                         <span className="meteo__wind-measure">м/с</span>
-                        <p id="Dm" className="meteo__basic_text_sm">{this.state.wind_dir_lit}</p>
+                        <p id="Dm" className="meteo__basic_text_sm">{this.windDirLit()}</p>
                     </div>
                     <div className="meteo__title meteo__title_color_w">ветер</div>
                 </div>
