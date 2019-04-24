@@ -44,26 +44,37 @@ class Buttons extends Component {
 
     render() {
         return (
-            <div className="col-4">
-                <div className="row">
-                    <div className="col-6">
-                        <div className="btn-group btn-group-toggle" data-toggle="buttons">
-                            {this.years.map((year, index) => {
-                                    return  <label className="btn btn-outline-primary">
+            <div className="card">
+                <div className="card-header" id="headingOne">
+                    <h5 className="mb-0">
+                        <button className="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                                aria-expanded="true" aria-controls="collapseOne">
+                            Collapsible Group Item #1
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div className="card-body">
+                        <div className="row">
+                            <div className="col-6">
+                                <div className="btn-group btn-group-toggle" data-toggle="buttons">
+                                    {this.years.map((year, index) => {
+                                            return  <label className="btn btn-outline-primary">
                                                 <input type="radio"
                                                        name="year" id={year.toString()}
                                                        key={"year" + index.toString()}
                                                        autoComplete="off"
                                                        value={year} />{year}
                                             </label>
-                                }
-                            )}
-                        </div>
-                    </div>
-                    <div className="col-6">
-                        <div className="btn-group-toggle" data-toggle="buttons">
-                            {this.months.map((month, index) => {
-                                    return  <label className="btn btn-outline-secondary">
+                                        }
+                                    )}
+                                </div>
+                            </div>
+                            <div className="col-6">
+                                <div className="btn-group-toggle" data-toggle="buttons">
+                                    {this.months.map((month, index) => {
+                                            return  <label className="btn btn-outline-secondary">
                                                 <input type="radio"
                                                        name="month"
                                                        id={month.toString()}
@@ -71,13 +82,15 @@ class Buttons extends Component {
                                                        autoComplete="off"
                                                        value={index + 1} />{month}
                                             </label>
-                                }
-                            )}
+                                        }
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <input type="submit" className="btn btn-success" value="Показать" onClick={() => this.handleClick()}/>
                         </div>
                     </div>
-                </div>
-                <div className="row">
-                    <input type="submit" className="btn btn-success" value="Показать" onClick={() => this.handleClick()}/>
                 </div>
             </div>
         )

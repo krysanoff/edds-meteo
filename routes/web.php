@@ -24,3 +24,11 @@ Route::get('/', function () {
         'earliestYear' => $graph->getFirstYear()
     ]);
 });
+
+Route::get('/stats', function () {
+   $meteo = new MeteoController();
+
+   return view('stats', [
+       'meteo' => $meteo->
+   ])
+});
