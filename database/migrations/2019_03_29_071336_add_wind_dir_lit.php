@@ -26,7 +26,7 @@ class AddWindDirLit extends Migration
     public function down()
     {
         Schema::table('meteo', function (Blueprint $table) {
-            $table->dropColumn('win_dir_lit');
+            $table->dropColumn('wind_dir_lit');
         });
     }
 }

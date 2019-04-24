@@ -65,7 +65,6 @@ class Meteo extends Model {
                 $this->wind = $this->meteoArray['Sm'];
                 $this->wind_max = $this->meteoArray['Sx'];
                 $this->wind_dir = $this->meteoArray['Dm'];
-                $this->wind_dir_lit = $this->defineWindDirLit();
                 $this->pressure = $this->meteoArray['Pa']/1.333224; // convert to mmHg
                 $this->relative_humidity = $this->meteoArray['Ua'];
 
