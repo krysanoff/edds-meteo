@@ -26,9 +26,9 @@ Route::get('/', function () {
 });
 
 Route::get('/stats', function () {
-   $meteo = new MeteoController();
+    $graph = new GraphController();
 
-   return view('stats', [
-       'meteo' => $meteo->
-   ])
+    return view('stats', [
+       'graph' => $graph->getLastDay()
+    ]);
 });

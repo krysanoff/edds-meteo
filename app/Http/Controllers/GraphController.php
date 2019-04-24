@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Edds\Meteo;
+use App\Edds\Graph;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,7 +11,7 @@ use PHPUnit\Util\Json;
 
 class GraphController extends Controller
 {
-    public $meteo;
+    public $graph;
     /**
      * Create a new controller instance.
      *
@@ -19,7 +19,7 @@ class GraphController extends Controller
      */
     public function __construct()
     {
-        $this->meteo = new Meteo();
+        $this->graph = new Graph();
     }
 
     /**
@@ -27,7 +27,7 @@ class GraphController extends Controller
      */
     public function getLastDay()
     {
-        $lastDay = $this->meteo->getLastDayData();
+        $lastDay = $this->graph->getLastDayData();
 
         if ($lastDay) {
             return $lastDay;
@@ -63,13 +63,13 @@ class GraphController extends Controller
     public function update($year = null, $month = null, $day = null)
     {
         if ($day) {
-            $result = $this->meteo->getDayData($day, $month, $year);
+            $result = $this->graph->getDayData($day, $month, $year);
         } elseif ($month) {
-            $result = $this->meteo->getMonthData($month, $year);
+            $result = $this->graph->getMonthData($month, $year);
         } elseif ($year) {
-            $result = $this->meteo->getYearData($year);
+            $result = $this->graph->getYearData($year);
         } else {
-            $result = $this->meteo->getLastDayData();
+            $result = $this->graph->getLastDayData();
         }
 
         return $result;
