@@ -26,6 +26,7 @@
         "react-chartjs-2": "^2.7.4"
     },
     "dependencies": {
+        "@wojtekmaj/react-daterange-picker": "^2.2.0",
         "babel-plugin-transform-remove-console": "^6.9.4",
         "bootstrap": "^4.2.1",
         "react": "^16.7.0",

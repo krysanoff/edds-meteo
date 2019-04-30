@@ -57,28 +57,27 @@ class Buttons extends Component {
                 <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                     <div className="card-body">
                         <div className="row">
-                            <div className="col-6">
+                            <div className="col-6" key="years">
                                 <div className="btn-group btn-group-toggle" data-toggle="buttons">
                                     {this.years.map((year, index) => {
-                                            return  <label className="btn btn-outline-primary">
-                                                <input type="radio"
+                                            return  <label className="btn btn-primary" key={"year" + index.toString()}>
+                                                <input type="checkbox"
                                                        name="year" id={year.toString()}
-                                                       key={"year" + index.toString()}
                                                        autoComplete="off"
-                                                       value={year} />{year}
+                                                       value={year}
+                                                       defaultChecked={year === this.currentYear ? 'checked': ''}/>{year}
                                             </label>
                                         }
                                     )}
                                 </div>
                             </div>
-                            <div className="col-6">
+                            <div className="col-6" key="months">
                                 <div className="btn-group-toggle" data-toggle="buttons">
                                     {this.months.map((month, index) => {
-                                            return  <label className="btn btn-outline-secondary">
+                                            return  <label className="btn btn-outline-secondary" key={"month" + index.toString()}>
                                                 <input type="radio"
                                                        name="month"
                                                        id={month.toString()}
-                                                       key={"month" + index.toString()}
                                                        autoComplete="off"
                                                        value={index + 1} />{month}
                                             </label>

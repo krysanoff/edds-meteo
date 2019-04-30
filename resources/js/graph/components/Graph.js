@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Clock from './Clock'
+import Buttons from './Buttons'
 import graphStore from '../stores/GraphStore'
 import * as Actions from '../actions'
 import { Line, defaults } from 'react-chartjs-2'
@@ -13,8 +13,6 @@ class Graph extends Component {
     componentDidMount() {
         console.log('graph has just mounted')
         graphStore.on('updateGraph', this.updateState)
-        this.setTimeToNextUpdate()
-        console.log(this.timeToFullHour())
     }
 
     componentWillUnmount() {
@@ -25,19 +23,11 @@ class Graph extends Component {
 
     shouldComponentUpdate() {
         console.log('graph will be updated')
-        clearInterval(this.intervalId)
         return true
     }
 
     componentDidUpdate() {
         console.log('graph has updated')
-        this.setTimeToNextUpdate()
-    }
-
-    timeToFullHour() {
-        const d = new Date()
-        const h = new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours() + 1, 2, 0, 0)
-        return (h - d)
     }
 
     updateGraph() {
@@ -46,10 +36,6 @@ class Graph extends Component {
 
     updateState = () => {
         this.setState(graphStore.getState())
-    }
-
-    setTimeToNextUpdate() {
-        this.intervalId = setInterval(this.updateGraph, this.timeToFullHour())
     }
 
     render() {
@@ -119,22 +105,18 @@ class Graph extends Component {
         }
 
        return(
-            <section key="1" className="row d-flex flex-wrap justify-content-around align-items-center mb-4">
-                <div className="col-sm-11 col-lg-6 graph">
+            <section key="1" className="row">
+                <div className="col-9 graph">
                     <Line
                         data={graph.data}
                         options={graph.options}
                     />
                     <span id="chart"></span>
                 </div>
-                <div className="col d-none d-none d-lg-block meteo__block">
-                    <div className="meteo__basic meteo__basic_color_ts">
-                        <div className="clock clock__ts">
-                            <Clock />
-                        </div>
-                    </div>
-                    <div className="meteo__title meteo__title_color_ts">Тарко-Сале</div>
+                <div className="col-3">
+                    <Buttons/>
                 </div>
+
             </section>
         )
     }
