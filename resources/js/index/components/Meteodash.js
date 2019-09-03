@@ -8,7 +8,7 @@ class Meteodash extends Component {
     componentDidMount() {
         console.log('meteodash has just mounted')
         meteoStore.on('updateMeteo', this.updateState)
-        setInterval(this.updateMeteo, 1000*60)
+        setInterval(this.updateMeteo, 1000*10)
     }
 
     componentWillUnmount() {
@@ -47,6 +47,10 @@ class Meteodash extends Component {
             windDirection = 'восточный';
         }
 
+        if (this.state.wind == 0) {
+            windDirection = ''
+        }
+
         return windDirection
     }
 
@@ -65,7 +69,7 @@ class Meteodash extends Component {
                         <i className="wi wi-windy"></i>
                         <span id="Sm" className="animate" key={this.state.wind}> {this.state.wind}</span>
                         <span className="meteo__wind-measure">м/с</span>
-                        <p id="Dm" className="meteo__basic_text_sm">{this.windDirLit()}</p>
+                        <p id="Dm" className="meteo__basic_text_sm"><span className="animate" key={this.windDirLit()}>{this.windDirLit()}</span></p>
                     </div>
                     <div className="meteo__title meteo__title_color_w">ветер</div>
                 </div>
