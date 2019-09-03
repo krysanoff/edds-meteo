@@ -28,22 +28,23 @@ class Meteodash extends Component {
     windDirLit = () => {
         let windDirection = ''
 
+        // The directions is wrong because the station is not installed properly. The north must be equals 0.
         if (this.state.wind_dir <= 23 || this.state.wind_dir >= 337) {
-            windDirection = 'южный';
-        } else if (this.state.wind_dir > 23 && this.state.wind_dir < 67) {
             windDirection = 'юго-восточный';
+        } else if (this.state.wind_dir > 23 && this.state.wind_dir < 67) {
+            windDirection = 'южный';
         } else if (this.state.wind_dir >= 67 && this.state.wind_dir <= 113) {
-            windDirection = 'восточный';
-        } else if (this.state.wind_dir > 113 && this.state.wind_dir < 157) {
-            windDirection = 'северо-восточный';
-        } else if (this.state.wind_dir >= 157 && this.state.wind_dir <= 203) {
-            windDirection = 'северный';
-        } else if (this.state.wind_dir > 203 && this.state.wind_dir < 247) {
-            windDirection = 'северо-западный';
-        } else if (this.state.wind_dir >= 247 && this.state.wind_dir <= 293) {
-            windDirection = 'западный';
-        } else if (this.state.wind_dir > 293 && this.state.wind_dir < 337) {
             windDirection = 'юго-западный';
+        } else if (this.state.wind_dir > 113 && this.state.wind_dir < 157) {
+            windDirection = 'западный';
+        } else if (this.state.wind_dir >= 157 && this.state.wind_dir <= 203) {
+            windDirection = 'северо-западный';
+        } else if (this.state.wind_dir > 203 && this.state.wind_dir < 247) {
+            windDirection = 'северный';
+        } else if (this.state.wind_dir >= 247 && this.state.wind_dir <= 293) {
+            windDirection = 'северо-восточный';
+        } else if (this.state.wind_dir > 293 && this.state.wind_dir < 337) {
+            windDirection = 'восточный';
         }
 
         return windDirection

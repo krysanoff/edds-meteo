@@ -81,32 +81,6 @@ class Meteo extends Model
         return;
     }
 
-    public function defineWindDirLit()
-    {
-        $windDirection = '';
-
-        // The directions is wrong because the station is not installed properly. The north must be equals 0.
-        if ($this->meteoArray['Dm'] <= 23 || $this->meteoArray['Dm'] >= 337) {
-                $windDirection = 'юго-восточный';
-            } else if ($this->meteoArray['Dm'] > 23 && $this->meteoArray['Dm'] < 67) {
-                $windDirection = 'южный';
-            } else if ($this->meteoArray['Dm'] >= 67 && $this->meteoArray['Dm'] <= 113) {
-                $windDirection = 'юго-западный';
-            } else if ($this->meteoArray['Dm'] > 113 && $this->meteoArray['Dm'] < 157) {
-                $windDirection = 'западный';
-            } else if ($this->meteoArray['Dm'] >= 157 && $this->meteoArray['Dm'] <= 203) {
-                $windDirection = 'северо-западный';
-            } else if ($this->meteoArray['Dm'] > 203 && $this->meteoArray['Dm'] < 247) {
-                $windDirection = 'северный';
-            } else if ($this->meteoArray['Dm'] >= 247 && $this->meteoArray['Dm'] <= 293) {
-                $windDirection = 'северо-восточный';
-            } else if ($this->meteoArray['Dm'] > 293 && $this->meteoArray['Dm'] < 337) {
-                $windDirection = 'восточный';
-            }
-
-        return $windDirection;
-    }
-
     /**
      * Connection with meteo station
      *
