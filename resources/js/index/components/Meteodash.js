@@ -4,11 +4,12 @@ import meteoStore from '../stores/MeteoStore'
 
 class Meteodash extends Component {
     state = meteoStore.initState()
+    timeout = document.getElementById('timeout').dataset.timeout
 
     componentDidMount() {
         console.log('meteodash has just mounted')
         meteoStore.on('updateMeteo', this.updateState)
-        setInterval(this.updateMeteo, 1000*10)
+        setInterval(this.updateMeteo, this.timeout)
     }
 
     componentWillUnmount() {
