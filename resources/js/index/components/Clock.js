@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 class Clock extends Component {
     state = {
-        time: new Date().toTimeString().substring(0, 8)
+        time: this.getDate()
     }
 
     componentDidMount() {
@@ -18,8 +18,12 @@ class Clock extends Component {
 
     tick() {
         this.setState({
-            time: new Date().toTimeString().substring(0, 8)
+            time: this.getDate()
         })
+    }
+
+    getDate() {
+        return new Date().toLocaleTimeString('ru-RU', {timeZone: 'Asia/Yekaterinburg'}).substring(0, 8)
     }
 
     render() {
